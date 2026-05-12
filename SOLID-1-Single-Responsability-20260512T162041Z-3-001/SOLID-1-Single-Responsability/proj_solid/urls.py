@@ -23,40 +23,18 @@ from django.conf.urls.static import static
 from app import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    
-    # define as rotas de URL da nossa aplicacao
-    path('', views.home, name='home'),
-    
-    # path('instrucoes/', 'instrucoes/instrucoes.html', name='instrucoes'),
+    path('', views.HomeView.home, name='home'),
 
+    path('categorias/', views.CategoriasView.categorias_listar, name='categorias'),
+    path('categorias/incluir/', views.CategoriasView.categorias_incluir, name='categorias_incluir'),
+    path('categorias/alterar/<int:id>/', views.CategoriasView.categorias_alterar, name='categorias_alterar'),
+    path('categorias/excluir/<int:id>/', views.CategoriasView.categorias_excluir, name='categorias_excluir'),
+    path('categorias/salvar/', views.CategoriasView.categorias_salvar, name='categorias_salvar'),
 
-
-    # ===========================================================================
-    # Rotas: CATEGORIA
-    #   - categorias/              : exibe página de listagem
-    #   - categorias/incluir/      : exibe a página de inclusao de registro
-    #   - categorias/alterar/<id>/ : exibe a página de alteracao de registro
-    #   - categorias/excluir/<id>/ : exibe a página de exclusao de registro
-    #   - categorias/salvar/       : insere, altera ou exclui um registro do BD
-    # 
-    path('categorias/', views.categorias, name='categorias'),
-    path('categorias/<str:acao>/', views.categorias, name='categorias' ), 
-    path('categorias/<str:acao>/<int:id>/', views.categorias, name='categorias'),
-
-    # ===========================================================================
-    # Rotas: PRODUTO
-    #   - produtos/              : exibe página de listagem
-    #   - produtos/incluir/      : exibe a página de inclusao de registro
-    #   - produtos/alterar/<id>/ : exibe a página de alteracao de registro
-    #   - produtos/excluir/<id>/ : exibe a página de exclusao de registro
-    #   - produtos/salvar/       : insere, altera ou exclui um registro do BD
-    # 
-    # 
-    path('produtos/', views.produtos, name='produtos'),
-    path('produtos/<str:acao>/', views.produtos, name='produtos' ), 
-    path('produtos/<str:acao>/<int:id>/', views.produtos, name='produtos'),
-
-] 
-
+    path('produtos/', views.ProdutosView.produtos_listar, name='produtos'),
+    path('produtos/incluir/', views.ProdutosView.produtos_incluir, name='produtos_incluir'),
+    path('produtos/alterar/<int:id>/', views.ProdutosView.produtos_alterar, name='produtos_alterar'),
+    path('produtos/excluir/<int:id>/', views.ProdutosView.produtos_excluir, name='produtos_excluir'),
+    path('produtos/salvar/', views.ProdutosView.produtos_salvar, name='produtos_salvar'),
+]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
