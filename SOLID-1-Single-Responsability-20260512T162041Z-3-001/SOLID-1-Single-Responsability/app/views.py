@@ -33,6 +33,7 @@ class ProdutoForm(forms.Form):
 
 class HomeView:
 
+    @staticmethod
     def home(request):
         '''Exibe a pagina inicial da aplicação'''
         # define a página HTML (template) que deverá será carregada
@@ -130,6 +131,7 @@ class ProdutoRepository:
 
 class CategoriasView:
 
+    @staticmethod
     def categorias_listar(request):
         try:
             registros = CategoriaRepository().listar()
@@ -137,6 +139,7 @@ class CategoriasView:
         except Exception as err:
             return render(request, 'home.html', context={'ERRO': err})
 
+    @staticmethod
     def categorias_incluir(request):
         try:
             return render(request, 'categorias_editar.html',
@@ -144,6 +147,7 @@ class CategoriasView:
         except Exception as err:
             return render(request, 'home.html', context={'ERRO': err})
 
+    @staticmethod
     def categorias_salvar(request):
         try:
             form_data = request.POST
@@ -158,6 +162,7 @@ class CategoriasView:
         except Exception as err:
             return render(request, 'home.html', context={'ERRO': err})
 
+    @staticmethod
     def categorias_alterar(request, id):
         try:
             registro = CategoriaRepository().buscar_por_id(id)
@@ -167,6 +172,7 @@ class CategoriasView:
         except Exception as err:
             return render(request, 'home.html', context={'ERRO': err})
 
+    @staticmethod
     def categorias_excluir(request, id):
         try:
             registro = CategoriaRepository().buscar_por_id(id)
@@ -177,6 +183,7 @@ class CategoriasView:
             return render(request, 'home.html', context={'ERRO': err})
 
 class ProdutosView:
+    @staticmethod
     def produtos_listar(request):
         try:
             registros = ProdutoRepository().listar()
@@ -185,6 +192,7 @@ class ProdutosView:
             return render(request, 'home.html', context={'ERRO': err})
 
 
+    @staticmethod
     def produtos_incluir(request):
         try:
             return render(request, 'produtos_editar.html',
@@ -193,6 +201,7 @@ class ProdutosView:
             return render(request, 'home.html', context={'ERRO': err})
 
 
+    @staticmethod
     def produtos_alterar(request, id):
         try:
             registro = ProdutoRepository().buscar_por_id(id)
@@ -210,6 +219,7 @@ class ProdutosView:
             return render(request, 'home.html', context={'ERRO': err})
 
 
+    @staticmethod
     def produtos_excluir(request, id):
         try:
             registro = ProdutoRepository().buscar_por_id(id)
@@ -227,6 +237,7 @@ class ProdutosView:
             return render(request, 'home.html', context={'ERRO': err})
 
 
+    @staticmethod
     def produtos_salvar(request):
         try:
             form_data = request.POST
